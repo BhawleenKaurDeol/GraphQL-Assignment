@@ -93,7 +93,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Select, notification } from 'antd';
 import { useMutation, useQuery } from '@apollo/client';
 import { v4 as uuidv4 } from 'uuid'; // Import uuid to generate a unique id
-import { ADD_CAR, GET_PEOPLE } from '../../graphql/queries'; // Adjust the path according to your project structure
+import { ADD_CAR, GET_PEOPLE, GET_CARS } from '../../graphql/queries'; // Adjust the path according to your project structure
 
 const AddCarForm = ({ contactId, onCompleted }) => {
   const [addCar] = useMutation(ADD_CAR, { onCompleted });
@@ -112,6 +112,19 @@ const AddCarForm = ({ contactId, onCompleted }) => {
           id: carId, // Pass the generated ID
           ...values,
           contactId,
+        },
+        update: (cache, { data: { addCar } }) => {
+          // Read the current cars data from the cache
+          const existingCars = cache.readQuery({ query: GET_CARS });
+
+          // Update the cache by adding the new car to the list
+          cache.writeQuery({
+            query: GET_CARS,
+            data: {
+              ...existingCars,
+              cars: [...existingCars.cars, addCar], // Add the new car to the cars list
+            },
+          });
         },
       });
 
@@ -136,7 +149,7 @@ const AddCarForm = ({ contactId, onCompleted }) => {
         <Input placeholder="Model" />
       </Form.Item>
       <Form.Item name="price" rules={[{ required: true, message: 'Price required' }]}>
-        <Input placeholder="Price" />
+        <Input placeholder="$" />
       </Form.Item>
 
       {/* Select Field for Choosing Person */}
@@ -158,5 +171,6 @@ const AddCarForm = ({ contactId, onCompleted }) => {
 };
 
 export default AddCarForm;
+
 
 

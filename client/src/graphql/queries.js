@@ -272,10 +272,154 @@
 // //   }
 // // `;
 
+
+
+
+
+
+
+
+// import { gql } from "@apollo/client";
+
+// // Persons Mutations and Queries
+
+// export const ADD_PERSON = gql`
+//   mutation AddPerson($id: String!, $firstName: String!, $lastName: String!) {
+//     addPerson(id: $id, firstName: $firstName, lastName: $lastName) {
+//       id
+//       firstName
+//       lastName
+//     }
+//   }
+// `;
+
+// export const UPDATE_PERSON = gql`
+//   mutation UpdatePerson($id: String!, $firstName: String!, $lastName: String!) {
+//     updatePerson(id: $id, firstName: $firstName, lastName: $lastName) {
+//       id
+//       firstName
+//       lastName
+//     }
+//   }
+// `;
+
+// export const REMOVE_PERSON = gql`
+//   mutation RemovePerson($id: String!) {
+//     removePerson(id: $id) {
+//       id
+//       firstName
+//       lastName
+//     }
+//   }
+// `;
+
+// export const GET_PERSON_WITH_CARS = gql`
+//   query GetPersonWithCars($id: String!) {
+//     person(id: $id) {
+//       id
+//       firstName
+//       lastName
+//       cars {
+//         id
+//         year
+//         make
+//         model
+//         price
+//       }
+//     }
+//   }
+// `;
+
+// export const GET_PEOPLE = gql`
+//   query GetPeople {
+//     People {
+//       id
+//       firstName
+//       lastName
+//     }
+//   }
+// `;
+
+// // Cars Mutations and Queries
+
+// export const ADD_CAR = gql`
+//   mutation AddCar(
+//     $id: String!
+//     $year: String!
+//     $make: String!
+//     $model: String!
+//     $price: String!
+//     $personId: String!
+//   ) {
+//     addCar(
+//       id: $id
+//       year: $year
+//       make: $make
+//       model: $model
+//       price: $price
+//       personId: $personId
+//     ) {
+//       id
+//       year
+//       make
+//       model
+//       price
+//       personId
+//     }
+//   }
+// `;
+
+
+
+
+// export const UPDATE_CAR = gql`
+//   mutation UpdateCar(
+//     $id: String!
+//     $year: String!
+//     $make: String!
+//     $model: String!
+//     $price: String!
+//   ) {
+//     updateCar(
+//       id: $id
+//       year: $year
+//       make: $make
+//       model: $model
+//       price: $price
+//     ) {
+//       id
+//       year
+//       make
+//       model
+//       price
+//     }
+//   }
+// `;
+
+// export const REMOVE_CAR = gql`
+//   mutation RemoveCar($id: String!) {
+//     removeCar(id: $id) {
+//       id
+//     }
+//   }
+// `;
+
+// export const GET_CARS = gql`
+//   query GetCars {
+//     GetCars {
+//       id
+//       year
+//       make
+//       model
+//       price
+//     }
+//   }
+// `;
+
+
 import { gql } from "@apollo/client";
 
-// Persons Mutations and Queries
-
+// Person Mutations and Queries
 export const ADD_PERSON = gql`
   mutation AddPerson($id: String!, $firstName: String!, $lastName: String!) {
     addPerson(id: $id, firstName: $firstName, lastName: $lastName) {
@@ -306,6 +450,16 @@ export const REMOVE_PERSON = gql`
   }
 `;
 
+export const GET_PEOPLE = gql`
+  query GetPeople {
+    People {
+      id
+      firstName
+      lastName
+    }
+  }
+`;
+
 export const GET_PERSON_WITH_CARS = gql`
   query GetPersonWithCars($id: String!) {
     person(id: $id) {
@@ -323,18 +477,7 @@ export const GET_PERSON_WITH_CARS = gql`
   }
 `;
 
-export const GET_PEOPLE = gql`
-  query GetPeople {
-    People {
-      id
-      firstName
-      lastName
-    }
-  }
-`;
-
-// Cars Mutations and Queries
-
+// Car Mutations and Queries
 export const ADD_CAR = gql`
   mutation AddCar(
     $id: String!
@@ -344,42 +487,19 @@ export const ADD_CAR = gql`
     $price: String!
     $personId: String!
   ) {
-    addCar(
-      id: $id
-      year: $year
-      make: $make
-      model: $model
-      price: $price
-      personId: $personId
-    ) {
+    addCar(id: $id, year: $year, make: $make, model: $model, price: $price, personId: $personId) {
       id
       year
       make
       model
       price
-      personId
     }
   }
 `;
 
-
-
-
 export const UPDATE_CAR = gql`
-  mutation UpdateCar(
-    $id: String!
-    $year: String!
-    $make: String!
-    $model: String!
-    $price: String!
-  ) {
-    updateCar(
-      id: $id
-      year: $year
-      make: $make
-      model: $model
-      price: $price
-    ) {
+  mutation UpdateCar($id: String!, $year: String!, $make: String!, $model: String!, $price: String!) {
+    updateCar(id: $id, year: $year, make: $make, model: $model, price: $price) {
       id
       year
       make
@@ -393,14 +513,6 @@ export const REMOVE_CAR = gql`
   mutation RemoveCar($id: String!) {
     removeCar(id: $id) {
       id
-    }
-  }
-`;
-
-export const GET_CARS = gql`
-  query GetCars {
-    GetCars {
-      id
       year
       make
       model
@@ -409,3 +521,14 @@ export const GET_CARS = gql`
   }
 `;
 
+export const GET_CARS = gql`
+  query GetCars {
+    GET_CARS {
+      id
+      year
+      make
+      model
+      price
+    }
+  }
+`;
