@@ -16,7 +16,7 @@ const App = () => {
     <ApolloProvider client={client}>
       <div className='App'>
         <Title />
-        <AddContact style={{ margin: '10px 0', }}/>
+        <AddContact/>
         <AddCarForm />
         <Contacts />
       </div>

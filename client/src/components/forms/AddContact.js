@@ -43,7 +43,7 @@ const AddContact = () => {
       name='add-contact-form'
       layout='inline'
       size='large'
-      style={{ marginBottom: '40px' }}
+      style={{ marginBottom: '40px', justifyContent:'center' }}
       form={form}
       onFinish={onFinish}
     >

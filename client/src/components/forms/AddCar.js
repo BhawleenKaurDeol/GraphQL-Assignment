@@ -10,7 +10,7 @@ const AddCarForm = ({ contactId, onCompleted }) => {
   };
 
   return (
-    <Form layout="inline" onFinish={handleSubmit}>
+    <Form layout="inline" onFinish={handleSubmit} style={{justifyContent:'center'}}>
       <Form.Item name="year" rules={[{ required: true, message: 'Year required' }]}>
         <Input placeholder="Year" />
       </Form.Item>
