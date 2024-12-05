@@ -344,7 +344,8 @@ const typeDefs = `
     addCar(id: String!, year: String!, make: String!, model: String!, price: String!, personId: String!): Car
     updateCar(id: String!, year: String!, make: String!, model: String!, price: String!): Car
     removeCar(id: String!): Car
-  }
+    
+}
 `;
 
 const resolvers = {
